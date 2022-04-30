@@ -48,10 +48,10 @@ for a complete list of training options.
 
 [Here](https://drive.google.com/drive/folders/1ud7RaR_0rmJws4xGJeGz-tdZMugvd2eh?usp=sharing) you can find both the baseline and extended models trained on the different datasets (Table 3 in the paper). For convenience, we recommend to keep the same directory structure since the testing script infer some of the parameters from the path names.
 
-* ReferItGame: [baseline](), [extended]()
-* RefCOCO: [baseline](), [extended]()
-* RefCOCO+: [baseline](), [extended]()
-* RefCOCOg: [baseline](), [extended]()
+* ReferItGame: [baseline](https://drive.google.com/drive/folders/1Yd0wVAGne5-drWz8wwlPjkIH6pZItzqm?usp=sharing), [extended](https://drive.google.com/drive/folders/1aPNzpfpeb0Y7Ztba-7N4EiR03LRqWzGg?usp=sharing)
+* RefCOCO: [baseline](https://drive.google.com/drive/folders/1Zm92kg3ereWMSUqlqJocd9tG5dcI0U4y?usp=sharing), [extended](https://drive.google.com/drive/folders/1xTDmJzxJ_KbrmKj6DkBLqNyZtdkbcD6z?usp=sharing)
+* RefCOCO+: [baseline](https://drive.google.com/drive/folders/1KxYomKbBTBEAWeB7DrnixwBavc44KZ3p?usp=sharing), [extended]()
+* RefCOCOg: [baseline](https://drive.google.com/drive/folders/1YXw1Nt0gy34aaemOZJpigGvMq72Of2Zy?usp=sharing), [extended]()
 
 
 # Evaluation
