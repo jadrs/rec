@@ -1,7 +1,8 @@
 This repository contains code and models for our NAACL 2022 paper **What kinds of errors do reference resolution models make and what can we learn from them?** by Jorge Sánchez, Mauricio Mazuecos, Hernán Maina and Luciana Benotti.
 
-1. Installation
-===============
+
+# Installation
+
 
 Setup the code in a virtualenv
 
@@ -17,8 +18,8 @@ $ python3 -m pip install torch==1.8.2+cu111 torchvision==0.9.2+cu111 torchaudio=
 $ python3 -m pip install -r requirements.txt
 ```
 
-2. Setup the training data
-==========================
+# Setup the training data
+
 
 Clone the [Referring Expression Dataset API](https://github.com/lichengunc/refer)
 
@@ -30,8 +31,8 @@ $ git checkout python3
 and follow the instructions to access the ReferItGame (a.k.a RefCLEF), RefCOCO, RefCOCO+ and RefCOCOg datasets.
 
 
-3. Training and validation
-==========================
+# Training and validation
+
 
 Run
 
@@ -41,8 +42,9 @@ $ python3 trainval.py -h
 
 for a complete list of training options.
 
-4. Pretrained models
-====================
+
+# Pretrained models
+
 
 [Here](https://drive.google.com/drive/folders/1ud7RaR_0rmJws4xGJeGz-tdZMugvd2eh?usp=sharing) you can find both the baseline and extended models trained on the different datasets (Table 3 in the paper). For convenience, we recommend to keep the same directory structure since the testing script infer some of the parameters from the path names.
 
@@ -51,8 +53,9 @@ for a complete list of training options.
 * RefCOCO+: [baseline](), [extended]()
 * RefCOCOg: [baseline](), [extended]()
 
-5. Testing
-==========
+
+# Evaluation
+
 
 For testing a trained model run:
 
@@ -60,4 +63,4 @@ For testing a trained model run:
 $ python3 test.py <MODEL.ckpt>
 ```
 
-The
+The script will inferr the dataset and parameters from the file path. You can run ```-h``` and check which options are available. The test script is provided as an example use of our trained models. You can customize it to your needs.
