@@ -366,24 +366,6 @@ def run(args):
         mask_pooling=args.mask_pooling
     )
 
-    if args.pretrained_model is not None:
-        cprint(
-            f'loading pre-trained weights from {args.pretrained_model}',
-            color='blue'
-        )
-        checkpoint = torch.load(
-            args.pretrained_model, map_location=lambda storage, loc: storage
-        )
-        # strip 'model.' from pl checkpoint and remove ranking head params
-        state_dict = {
-            k[len('model.'):]: v
-            for k, v in checkpoint['state_dict'].items()
-            if 'ranking_head' not in k
-        }
-        missing, _ = model.load_state_dict(state_dict, strict=False)
-        # ensure the only missing keys are those of the segmentation head
-        assert [k for k in missing if 'segm' not in k] == []
-
     # learning rate scheduler
     scheduler_param = {}
     if args.scheduler:
@@ -538,7 +520,6 @@ if __name__ == '__main__':
     parser.add_model_args()
     parser.add_data_args()
     parser.add_loss_args()
-    parser.add_pretrainer_args(learning_mode=False)
     parser.add_trainer_args()
     parser.add_runtime_args()
     args = parser.parse_args()

@@ -76,8 +76,6 @@ class FocalLoss(nn.Module):
         super().__init__()
         self.gamma = gamma
         self.reduction = reduction
-        # self.ce_loss = nn.CrossEntropyLoss(reduce=False)
-        # self.ce_loss = nn.BCELoss(reduction='none')
         self.ce_loss = nn.BCEWithLogitsLoss(reduction='none')
 
     def forward(self, pred, target):
@@ -117,74 +115,6 @@ class ListNetLoss(nn.Module):
         p1 = F.softmax(self.tau * target, dim=1)
         log_p2 = F.log_softmax(pred, dim=1)
         loss = -(p1 * log_p2).sum(1)
-        if self.reduction == 'mean':
-            return loss.mean()
-        elif self.reduction == 'sum':
-            return loss.sum()
-        return loss
-
-
-class GroundingLoss(nn.Module):
-    def __init__(self, reduction='mean'):
-        super().__init__()
-        self.reduction = reduction
-
-    # Zareian et al (2021) Open-Vocabulary Object Detection Using Captions
-    def score(self, x, z):
-        sim = torch.einsum('nik,njk->nij', x, z)  # NxRxK
-        sim = torch.softmax(sim, dim=1) * sim
-        sim = sim.sum((1,2)) / z.size(1)  # N
-        return sim
-
-    def forward(self, embs):
-        x, z = embs  # Nx*xD
-
-        sim_x = torch.stack([
-            self.score(torch.roll(x, i, 0), z)
-            for i in range(x.size(0))
-        ], dim=0)  # NxN
-        loss_x = -torch.log_softmax(sim_x, dim=0)[0]  # N
-
-        sim_z = torch.stack([
-            self.score(x, torch.roll(z, j, 0))
-            for j in range(z.size(0))
-        ], dim=0)  # NxN
-        loss_z = -torch.log_softmax(sim_z, dim=0)[0]  # N
-
-        loss = loss_x + loss_z
-        if self.reduction == 'mean':
-            return loss.mean()
-        elif self.reduction == 'sum':
-            return loss.sum()
-        return loss
-
-
-class BoxContrastiveLoss(nn.Module):
-    def __init__(self, reduction='mean', gamma=0.0):
-        super().__init__()
-        self.reduction = reduction
-        self.gamma = float(gamma)
-
-    def forward(self, pred, pred_alt, target):
-
-        # l1_loss = F.smooth_l1_loss(pred, target, reduction='none')
-        # l1_loss_alt = F.smooth_l1_loss(pred_alt, target, reduction='none')
-
-        # iou_loss, iou_loss_alt = 0.0, 0.0
-        # if self.gamma > 0.0:
-        #     iou_loss = giou_loss(pred, target, reduction='none')
-        #     iou_loss_alt = giou_loss(pred_alt, target, reduction='none')
-
-        # ell = torch.exp(-(l1_loss + self.gamma * iou_loss).squeeze())
-        # ell_alt = torch.exp(-(l1_loss_alt + self.gamma * iou_loss_alt).squeeze())
-
-        ell = 1.0 - giou_loss(pred, target, 'none', eps=1e-7).squeeze()
-        ell_alt = 1.0 - giou_loss(pred_alt, target, 'none', eps=1e-7).squeeze()
-
-        loss = -torch.log_softmax(torch.stack([ell, ell_alt], dim=0), dim=0)[0]
-
-        # loss = torch.relu(self.gamma - ell + ell_alt)   # constraint: ell - ell_alt > gamma
-
         if self.reduction == 'mean':
             return loss.mean()
         elif self.reduction == 'sum':

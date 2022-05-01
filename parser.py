@@ -35,13 +35,6 @@ class ArgumentParser(argparse.ArgumentParser):
                 'efficientnet-b0', 'efficientnet-b3',
             ),
         )
-        # group.add_argument(
-        #     '--language-model',
-        #     help='language model',
-        #     type=str,
-        #     default='roberta',
-        #     choices=('rnn', 'roberta'),
-        # )
         group.add_argument(
             '--mask-pooling',
             help='if set, pool visual features using a mask',
@@ -69,7 +62,7 @@ class ArgumentParser(argparse.ArgumentParser):
             '--num-conv',
             help='number of convolutional blocks (post transformer)',
             type=int,
-            default=4,
+            default=8,
         )
 
     def add_data_args(self):
@@ -114,51 +107,6 @@ class ArgumentParser(argparse.ArgumentParser):
             default=0.1,
             type=float
         )
-
-    def add_pretrainer_args(self, learning_mode=True):
-        group = self.add_argument_group('pretrainer')
-        if learning_mode:
-            group.add_argument(
-                '--top-k',
-                help='rank top-k elements',
-                default=5,
-                type=int
-            )
-            group.add_argument(
-                '--tau',
-                help='ListNetLoss++ target temperature',
-                default=1.0,
-                type=float
-            )
-            group.add_argument(
-                '--wrnk',
-                help='ranking weight',
-                default=1.0,
-                type=float
-            )
-            group.add_argument(
-                '--wcls',
-                help='classification weight',
-                default=1.0,
-                type=float
-            )
-            group.add_argument(
-                '--wgnd',
-                help='grounding weight',
-                default=1.0,
-                type=float
-            )
-            group.add_argument(
-                '--frozen-backbones',
-                help='if set, freeze both vision and language backbones',
-                action='store_true'
-            )
-        else:
-            group.add_argument(
-                '--pretrained-model',
-                help='pretrained model path',
-                type=str
-            )
 
     def add_trainer_args(self):
         group = self.add_argument_group('trainer')
