@@ -24,7 +24,7 @@ $ python3 -m pip install -r requirements.txt
 Clone the [Referring Expression Dataset API](https://github.com/lichengunc/refer)
 
 ```sh
-$ git clone https://github.com/lichengunc/refer.git
+$ git clone https://github.com/lichengunc/refer.git && cd refer
 $ git checkout python3
 ```
 
