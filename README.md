@@ -57,7 +57,19 @@ for a complete list of training options.
 # Evaluation
 
 
-For testing a trained model run:
+First, you'll a running version of stanza. You can download the english package files as:
+
+```sh
+$ python3 -c "import stanza; stanza.download('en')"
+```
+
+You can also use spacy, in which case you need to change the ```backend="stanza"``` argument in line 178 to "backend=spacy". To get the spacy language files, run:
+
+```sh
+$ python3 -m spacy download en_core_web_md
+```
+
+Now, to test a trained model run:
 
 ```sh
 $ python3 test.py <MODEL.ckpt>
