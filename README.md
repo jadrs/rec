@@ -5,9 +5,14 @@ If you find this repository usefull, please consider citing us.
 ```bibtex
 @inproceedings{sanchez2022reference,
   title = {What kinds of errors do reference resolution models make and what can we learn from them?},
-  author = {Sanchez, J. and and Mazuecos, M. and Maina, H. and Benotti, L.},
+  author = {S\'anchez, Jorge and
+    Mazuecos, Mauricio and
+    Maina, Hern\'an and
+    Benotti, Luciana},
   booktitle = {Findings of the {A}ssociation for {C}omputational {L}inguistics: {NAACL}},
-  year = {2022}
+  year = {2022},
+  address = "Seattle, US",
+  publisher = "{A}ssociation for {C}omputational {L}inguistics",
 }
 ```
 
