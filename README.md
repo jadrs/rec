@@ -76,3 +76,20 @@ $ python3 test.py <MODEL.ckpt>
 ```
 
 The script will inferr the dataset and parameters from the file path. You can run ```-h``` and check which options are available. The test script is provided as an example use of our trained models. You can customize it to your needs.
+
+# Error analysis annotation
+
+We make available the annotation of the type of abilities needed for each RE to
+be correctly resolved in the file
+```ReferIt_Skill_annotation-NAACL2022.csv.g0```.
+
+The file contains more type of abilities than the ones discussed in the paper.
+The only types relevant for the analysis are:
+
+ - fuzzy objects
+ - meronimy
+ - occlusion
+ - directional
+ - implicit
+ - typo
+ - viewpoint
