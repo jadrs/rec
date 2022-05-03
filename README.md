@@ -1,5 +1,15 @@
-This repository contains code and models for our NAACL 2022 paper **What kinds of errors do reference resolution models make and what can we learn from them?** by Jorge Sánchez, Mauricio Mazuecos, Hernán Maina and Luciana Benotti.
+This repository contains code and models for our NAACL 2022 paper [What kinds of errors do reference resolution models make and what can we learn from them?]() by Jorge Sánchez, Mauricio Mazuecos, Hernán Maina and Luciana Benotti.
 
+If you find this repository usefull, please consider citing us.
+
+```bibtex
+@inproceedings{sanchez2022reference,
+  title = {What kinds of errors do reference resolution models make and what can we learn from them?},
+  author = {Sanchez, J. and and Mazuecos, M. and Maina, H. and Benotti, L.},
+  booktitle = {Findings of the {A}ssociation for {C}omputational {L}inguistics: {NAACL}},
+  year = {2022}
+}
+```
 
 # Installation
 

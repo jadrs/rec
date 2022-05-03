@@ -1,5 +1,7 @@
 import argparse
 
+import os
+
 import torch
 
 import transformers
@@ -98,7 +100,8 @@ def run(args):
     # ------------------------------------------------------------------------
     # parse model arguments from checkpoint path
 
-    _, _, dataset, max_length, input_size, backbone, num_heads, num_layers, num_conv, _, _, mu, mask_pooling = args.checkpoint.split('_')[:13]
+    exp_dirname = os.path.split(os.path.dirname(args.checkpoint))[1]
+    _, _, dataset, max_length, input_size, backbone, num_heads, num_layers, num_conv, _, _, mu, mask_pooling = exp_dirname.split('_')[:13]
     max_length = int(max_length) if args.max_length is None else args.max_length
     input_size = int(input_size) if args.input_size is None else args.input_size
     num_layers = int(num_layers)
